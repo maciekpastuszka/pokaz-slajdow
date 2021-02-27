@@ -1,31 +1,24 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import Link from 'next/link'
+import classNames from 'classnames/bind';
 
-export default function HeroPost({
-  title,
-  coverImage,
-  date,
-  excerpt,
-  author,
-  slug,
-}) {
+import Avatar from '../components/avatar';
+import Date from '../components/date';
+import CoverImage from '../components/cover-image';
+import Link from 'next/link';
+import styles from './hero-post.module.css';
+
+const cx = classNames.bind(styles);
+
+export default function HeroPost({ title, coverImage, date, excerpt, author, slug }) {
   return (
     <section>
-      <div className="mb-8 md:mb-16">
-        {coverImage && (
-          <CoverImage title={title} coverImage={coverImage} slug={slug} />
-        )}
+      <div className={cx('hero')}>
+        {coverImage && <CoverImage title={title} coverImage={coverImage} slug={slug} />}
       </div>
       <div className="md:grid md:grid-cols-2 md:col-gap-16 lg:col-gap-8 mb-20 md:mb-28">
         <div>
           <h3 className="mb-4 text-4xl lg:text-6xl leading-tight">
             <Link as={`/posts/${slug}`} href="/posts/[slug]">
-              <a
-                className="hover:underline"
-                dangerouslySetInnerHTML={{ __html: title }}
-              />
+              <a className="hover:underline" dangerouslySetInnerHTML={{ __html: title }} />
             </Link>
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
@@ -41,5 +34,5 @@ export default function HeroPost({
         </div>
       </div>
     </section>
-  )
+  );
 }

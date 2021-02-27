@@ -1,0 +1,78 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "plugins": ["prettier", "lodash"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "rules": {
+    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
+    "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0,
+    "import/extensions": 0,
+    "class-methods-use-this": 0,
+    "import/no-unresolved": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "dot-notation": 0,
+    "no-return-assign": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "react/destructuring-assignment": 0,
+    "react/forbid-prop-types": 0,
+    "react/sort-comp": 0,
+    "react/no-did-update-set-state": 0,
+    "max-len": 0,
+    "import/no-named-as-default": 0,
+    "no-use-before-define": 0,
+    "react/prefer-stateless-function": 0,
+    "camelcase": 0,
+    "react/no-danger": 0,
+    "react/display-name": 0,
+    "no-plusplus": 0,
+    "react/no-array-index-key": 1,
+    "react/prop-types": 1,
+    "react/jsx-no-target-blank": 1, // we control or trust the linked sites - see MCE-3863
+    "consistent-return": 1,
+    "no-console": 1,
+    "no-debugger": 1,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "no-param-reassign": [2, { "props": false }],
+    "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+    "no-unused-expressions": [2, { "allowShortCircuit": true, "allowTernary": true }],
+    "prettier/prettier": [
+      "warn",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "allowChildren": true
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "depth": 3
+      }
+    ]
+    // "react-hooks/exhaustive-deps": 1 disabled until autoformatting could be turned off: https://github.com/facebook/react/issues/15204
+  }
+}
