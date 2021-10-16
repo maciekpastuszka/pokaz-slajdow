@@ -7,8 +7,8 @@ import pl from 'date-fns/locale/pl';
 import { CMS_NAME } from '../../lib/constants';
 import { getAllPostsWithSlug, getPostAndMorePosts } from '../../lib/api';
 
-import Container from '../../components/core/Container';
-import Layout from '../../components/layout/Layout';
+import { Container, Title } from '@components/core';
+import { Layout } from '@components/layout';
 
 export default function Post({ post, posts, preview }) {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function Post({ post, posts, preview }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const date = post && format(new Date(post.date), 'dd MMMM, yyyy', { locale: pl });
+  const date = post?.date && format(new Date(post.date), 'dd MMMM, yyyy', { locale: pl });
 
   return (
     <Layout preview={preview}>
@@ -30,7 +30,7 @@ export default function Post({ post, posts, preview }) {
             <article>
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | {CMS_NAME}
                 </title>
                 <meta property="og:image" content={post.featuredImage?.node?.sourceUrl} />
               </Head>
@@ -47,14 +47,9 @@ export default function Post({ post, posts, preview }) {
                 `}
               />
 
-              <h1
-                css={css`
-                  font-size: 4rem;
-                  margin: 0;
-                `}
-              >
+              <Title size="1" type="h1">
                 {post.title}
-              </h1>
+              </Title>
               <span
                 css={css`
                   display: block;
@@ -64,11 +59,17 @@ export default function Post({ post, posts, preview }) {
               >
                 {date}
               </span>
-              <div
-                className="post-excerpt"
-                dangerouslySetInnerHTML={{ __html: post.customFields.postExcerpt }}
-              />
-              <div className="post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+              <div className="post-content">
+                <div
+                  css={css`
+                    font-size: 1.3em;
+                    font-weight: 700;
+                  `}
+                  dangerouslySetInnerHTML={{ __html: post.customFields.postExcerpt }}
+                />
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              </div>
 
               {/*<PostHeader*/}
               {/*  title={post.title}*/}

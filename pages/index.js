@@ -1,22 +1,22 @@
 import Head from 'next/head';
-import Container from '../components/core/Container';
-import Hero from '../components/layout/Hero';
 import { getAllPostsForHome } from '../lib/api';
 import { CMS_NAME } from '../lib/constants';
+
+import { Container } from '@components/core';
+import { Hero, Slider } from '@components/layout';
 
 export default function Index({ allPosts: { edges }, preview }) {
   const heroPost = edges[0]?.node;
   const morePosts = edges.slice(1);
-
   return (
     <>
       <Head>
         <title>Next.js Blog Example with {CMS_NAME}</title>
       </Head>
-      <Container>
-        <Hero />
-        {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
-      </Container>
+
+      <Slider />
+      <Hero />
+      {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
     </>
   );
 }
