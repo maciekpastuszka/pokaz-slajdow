@@ -18,7 +18,7 @@ export default function Post({ post, posts, preview }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  const date = format(new Date(post.dateGmt), 'dd MMMM, yyyy', { locale: pl });
+  const date = post && format(new Date(post.date), 'dd MMMM, yyyy', { locale: pl });
 
   return (
     <Layout preview={preview}>
