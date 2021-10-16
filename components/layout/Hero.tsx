@@ -1,4 +1,4 @@
-import Container from './core/Container';
+import Container from '../core/Container';
 import Link from 'next/link';
 import { css } from '@emotion/react';
 
@@ -8,7 +8,7 @@ export default function Hero({ content }) {
       <div
         css={css`
           padding: 20px;
-          color: green;
+          color: #68bf68;
           margin: 10px;
         `}
       >

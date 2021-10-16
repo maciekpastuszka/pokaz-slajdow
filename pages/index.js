@@ -1,9 +1,6 @@
 import Head from 'next/head';
-import Container from '../components/container';
-import MoreStories from '../components/more-stories';
-import HeroPost from '../components/hero-post';
-import Hero from '../components/Hero';
-import Intro from '../components/intro';
+import Container from '../components/core/Container';
+import Hero from '../components/layout/Hero';
 import { getAllPostsForHome } from '../lib/api';
 import { CMS_NAME } from '../lib/constants';
 
@@ -18,18 +15,7 @@ export default function Index({ allPosts: { edges }, preview }) {
       </Head>
       <Container>
         <Hero />
-        <Intro />
-        {heroPost && (
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.featuredImage?.node}
-            date={heroPost.date}
-            author={heroPost.author?.node}
-            slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
-          />
-        )}
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        {/*{morePosts.length > 0 && <MoreStories posts={morePosts} />}*/}
       </Container>
     </>
   );
