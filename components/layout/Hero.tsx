@@ -10,9 +10,10 @@ export default function Hero({ content }) {
           padding: 20px;
           color: #68bf68;
           margin: 10px;
+          height: 4000px;
         `}
       >
-        emotion
+        hero
       </div>
     </Container>
   );

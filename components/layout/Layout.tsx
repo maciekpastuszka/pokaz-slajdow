@@ -1,7 +1,8 @@
 import Meta from './Meta';
-import { css } from '@emotion/react';
+import { Global, css } from '@emotion/react';
 import { useState } from 'react';
-import { Icon } from '@components/core';
+import { Navigation } from '@components/layout';
+import { COLORS } from '@lib/constants';
 
 export default function Layout({ preview, children }) {
   const [theme, setTheme] = useState('light');
@@ -9,42 +10,25 @@ export default function Layout({ preview, children }) {
   return (
     <>
       <Meta />
+
       <main
-        style={{
-          '--background-color': theme === 'dark' ? '#222222' : '#ffffff',
-          '--text-color': theme === 'dark' ? '#f3f3f3' : '#2c2c2c',
-        }}
+        style={
+          {
+            '--background-color':
+              theme === 'dark' ? COLORS['background-dark'] : COLORS['background-light'],
+            '--text-color': theme === 'dark' ? COLORS['text-light'] : COLORS['text-dark'],
+            '--slider-opacity': theme === 'dark' ? '0.6' : '1',
+          } as React.CSSProperties
+        }
         css={css`
           overflow: hidden;
           background-color: var(--background-color);
           color: var(--text-color);
+          transition: background-color 0.3s;
         `}
       >
+        <Navigation theme={theme} setTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
         {children}
-
-        <button
-          css={css`
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: transparent;
-            cursor: pointer;
-            border: none;
-
-            &:hover svg {
-              transform: rotate(90deg);
-            }
-          `}
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-        >
-          <Icon
-            type="sun"
-            styles={css`
-              fill: var(--text-color);
-              transition: transform 0.3s;
-            `}
-          />
-        </button>
       </main>
     </>
   );
