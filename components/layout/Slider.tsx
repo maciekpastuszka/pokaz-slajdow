@@ -61,10 +61,10 @@ function Arrow({ type, callback }) {
   );
 }
 
-export default function Slider({ content }) {
+export default function Slider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
-  const animationInterval = useRef();
+  const animationInterval = useRef(null);
 
   const initAutoplay = () => {
     clearInterval(animationInterval.current);
