@@ -86,20 +86,18 @@ export default function Navigation({ setTheme, theme }) {
           </ListElement>
 
           <li>
-            <Link href="/">
-              <a href="/">
-                <Logo
-                  styles={css`
-                    padding: 0 30px;
-                    width: 350px;
-                    height: auto;
+            <Link href="/" passHref>
+              <Logo
+                styles={css`
+                  padding: 0 30px;
+                  width: 350px;
+                  height: auto;
 
-                    path {
-                      fill: ${withBackground ? `var(--text-color)` : COLORS['text-light']};
-                    }
-                  `}
-                />
-              </a>
+                  path {
+                    fill: ${withBackground ? `var(--text-color)` : COLORS['text-light']};
+                  }
+                `}
+              />
             </Link>
           </li>
 
