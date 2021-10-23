@@ -63,35 +63,24 @@ function Arrow({ type, callback }) {
 
 export default function Slider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const [visible, setVisible] = useState(true);
-
-  useEffect(function resetAutoPlay() {
-    const handleVisibilityChange = () => {
-      setVisible(document.visibilityState !== 'hidden');
-    };
-
-    window.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => window.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, []);
 
   const animationInterval = useRef(null);
 
   const initAutoplay = () => {
     clearInterval(animationInterval.current);
 
-    const autoplay = () => {
-      emblaApi?.scrollNext();
-    };
-
-    animationInterval.current = setInterval(autoplay, 4000);
+    animationInterval.current = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        emblaApi?.scrollNext();
+      }
+    }, 7000);
   };
 
   useEffect(() => {
     initAutoplay();
 
     return () => clearInterval(animationInterval.current);
-  }, [emblaApi, visible]);
+  }, [emblaApi]);
 
   const scrollPrev = () => {
     initAutoplay();
