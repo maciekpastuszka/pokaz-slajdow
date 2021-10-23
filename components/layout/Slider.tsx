@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { COLORS } from '@lib/constants';
 import mq from '@utils/mq';
@@ -63,6 +63,17 @@ function Arrow({ type, callback }) {
 
 export default function Slider() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [visible, setVisible] = useState(true);
+
+  useEffect(function resetAutoPlay() {
+    const handleVisibilityChange = () => {
+      setVisible(document.visibilityState !== 'hidden');
+    };
+
+    window.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => window.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   const animationInterval = useRef(null);
 
@@ -80,7 +91,7 @@ export default function Slider() {
     initAutoplay();
 
     return () => clearInterval(animationInterval.current);
-  }, [emblaApi]);
+  }, [emblaApi, visible]);
 
   const scrollPrev = () => {
     initAutoplay();

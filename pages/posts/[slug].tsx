@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { css } from '@emotion/react';
@@ -45,6 +46,14 @@ export default function Post({ post, posts }) {
               `}
             />
             <Container>
+              {/*<Image*/}
+              {/*  alt="Picture of the author"*/}
+              {/*  layout="responsive"*/}
+              {/*  width="700"*/}
+              {/*  height="475"*/}
+              {/*  src="https://patrycjapastuszka.com/wp-content/uploads/2020/11/DSC04345-1.jpg"*/}
+              {/*/>*/}
+
               <Title size="1" type="h1">
                 {post.title}
               </Title>
@@ -57,7 +66,6 @@ export default function Post({ post, posts }) {
               >
                 {date}
               </span>
-
               <div className="post-content">
                 <div
                   css={css`
@@ -68,7 +76,6 @@ export default function Post({ post, posts }) {
                 />
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
               </div>
-
               {/*<PostHeader*/}
               {/*  title={post.title}*/}
               {/*  coverImage={post.featuredImage?.node}*/}
